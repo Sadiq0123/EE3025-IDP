@@ -152,7 +152,7 @@ input_signal,fs = sf.read('Sound_Noise.wav')
 sampl_freq=fs
     
 #order of the filter
-order = 4
+order = 3
     
 #cutoff frequency 4kHz
 cutoff_freq=4000.0
@@ -249,7 +249,32 @@ https://github.com/Sadiq0123/EE3025-IDP/tree/main/Assignment-1/soundfiles/Sound_
   
 
 \section{\textbf{Results}}
-To verify that the new parameters have filtered the signal, we plot the frequency response and time-series plot of original and filtered soundfile. The time plot of the filtered signal is smoother due to lack of all the noisy high frequency components.
+To verify that the new parameters have filtered the signal, we plot the frequency response and time-series plot of original and filtered soundfiles. The time plot of the filtered signal is smoother due to lack of all the noisy high frequency components. The table below summarizes the differences between the parameters  and outputs from the original code. \\ We observe from the table that the sum of components before the cutoff is slightly less for the modified code. This is because the components near cutoff also slightly reduce in magnitude as this is not an ideal filter. Before, noise had almost $\frac{1}{4}^{th}$ of the strength of useful signal. This goes down to less than 1\% in the filtered signal. 
+
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+
+ \hline
+ Parameter & Original Signal & Filtered Signal \\
+ \hline
+ Cutoff Frequency & 4000 Hz & 2111 Hz \\ 
+ \hline
+ Order of filter & 3 & 4 (applied multiple\\
+  &   &   times) \\ 
+ \hline
+ Integral of FFT & $1.57*10^7$ & $1.48*10^7$\\
+ from 0 to cutoff &  & \\
+ \hline
+ Integral of FFT & $3.65*10^6$ & $1.41*10^5$\\
+ after cutoff &  & \\
+ \hline
+ Ratio of components & 0.2318 & 0.0095\\
+ after and before &  & \\
+ cutoff frequency &  & \\
+ \hline
+\end{tabular}
+\end{center}
+
 \begin{figure}[!h]
 \centering
 \includegraphics[width=1.2\columnwidth]{./figs/ee18btech11051_freq_result.eps}
@@ -259,8 +284,9 @@ To verify that the new parameters have filtered the signal, we plot the frequenc
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=1.2\columnwidth]{./figs/ee18btech11051_time_result.eps}
+\includegraphics[width=1\columnwidth]{./figs/ee18btech11051_time_result.eps}
 \caption{Time series signal}
 \label{fig:Figure2}
 \end{figure}
 \end{document}
+
