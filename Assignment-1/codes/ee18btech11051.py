@@ -90,3 +90,25 @@ plt.savefig('../figs/ee18btech11051_time_result.png')
 plt.show()
 
 sf.write('../soundfiles/Sound_optimized.wav', filtered, fs)
+
+# Printing the results
+
+original_beforecutoff = 0
+original_aftercutoff = 0
+optimized_beforecutoff = 0
+optimized_aftercutoff = 0
+
+for i in range(len(freqs)):
+    if freqs[i]<cutoff_freq:
+        original_beforecutoff += original_fft[i]
+        optimized_beforecutoff += filtered_fft[i]
+    else:
+        original_aftercutoff += original_fft[i]
+        optimized_aftercutoff += filtered_fft[i]
+
+print("Integral from 0 to cutoff of original signal:  {}".format(round(original_beforecutoff,2)))
+print("Integral from 0 to cutoff of filtered signal:  {}".format(round(optimized_beforecutoff,2)))
+print("Integral after cutoff of original signal:  {}".format(round(original_aftercutoff,2)))
+print("Integral after cutoff of filtered signal:  {}".format(round(optimized_aftercutoff,2)))
+print("Ratio of components after cutoff to before the cutoff of original signal:  {}".format(round(original_aftercutoff/original_beforecutoff,2)))
+print("Ratio of components after cutoff to before the cutoff of filtered signal:  {}".format(round(optimized_aftercutoff/optimized_beforecutoff,2)))
