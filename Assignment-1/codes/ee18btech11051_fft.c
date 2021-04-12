@@ -57,10 +57,10 @@ int main()
     // We take data from a file for the signal
     finp = fopen("x.dat", "r");
     int len = 0;
-    double a,b;
+    double a;
     while(!feof(finp) && len<n){
-            fscanf(finp, "%lf+%lfi \n", &a, &b);
-            x[len] = CMPLX(a,b);
+            fscanf(finp, "%lf", &a);
+            X[len] = CMPLX(a,0);
             len++;
     }
 
@@ -77,7 +77,7 @@ int main()
     fout2 = fopen("Reconst_ifft.dat","w");
     for(int i=0;i<N;i++)
     {
-        fprintf(fout2, "%1f+%1fi\n", creal(x[i]), cimag(x[i]));
+        fprintf(fout2,"%lf \n",creal(x[i]));
     }
     fclose(finp);
     fclose(fout1);
