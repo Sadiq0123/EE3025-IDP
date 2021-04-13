@@ -37,7 +37,7 @@ void fft_(complex* inp, int N, int isfft)
 // The parameter isfft determines whether to take the fourier transform or the inverse
 // fourier transform of the given array. isfft=1 for fourier transform and isfft= -1 for inverse
 void fft(complex* inp, int N, int isfft){
-    fft_(inp, N, isfft)
+    fft_(inp, N, isfft);
 
     // For inverse fft, we scale the array
     if(isfft==-1){
